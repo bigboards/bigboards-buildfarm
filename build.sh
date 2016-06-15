@@ -7,7 +7,7 @@ set -eo pipefail
 PROJECT=$1
 BRANCH=$2
 
-[[ $BUILDKITE_BRANCH == 'master' ]] && TAG=latest || TAG=$BUILDKITE_BRANCH
+[[ $BRANCH == 'master' ]] && TAG=latest || TAG=$BRANCH
 
 sed -i "s/__arch__/$(uname -m)/g" Dockerfile
 docker build -t bigboards/${PROJECT}-$(uname -m):$TAG .
