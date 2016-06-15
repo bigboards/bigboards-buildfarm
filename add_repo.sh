@@ -10,6 +10,7 @@ TMP_FILE="/tmp/$(uuid)"
 
 PROJECT_ID=$1
 PROJECT_NAME=$2
+CONTAINER_ID=$(echo $PROJECT_ID | sed "s/^docker-//")
 
 ## Create the git repo
 echo "Creating the github repository"
@@ -45,7 +46,7 @@ curl -X POST "https://api.buildkite.com/v2/organizations/${ORG_SLUG}/pipelines?a
       {
         \"type\": \"script\",
         \"name\": \"Build x86_64 :container:\",
-        \"command\": \"${BUILD_SCRIPT} ${PROJECT_ID} \${BUILDKITE_BRANCH}\",
+        \"command\": \"${BUILD_SCRIPT} ${CONTAINER_ID} \${BUILDKITE_BRANCH}\",
 	\"agent_query_rules\": [
            \"arch=x86_64\"
         ]
@@ -53,7 +54,7 @@ curl -X POST "https://api.buildkite.com/v2/organizations/${ORG_SLUG}/pipelines?a
       {
         \"type\": \"script\",
         \"name\": \"Build armv7l :container:\",
-        \"command\": \"${BUILD_SCRIPT} ${PROJECT_ID} \${BUILDKITE_BRANCH}\",
+        \"command\": \"${BUILD_SCRIPT} ${CONTAINER_ID} \${BUILDKITE_BRANCH}\",
 	\"agent_query_rules\": [
            \"arch=armv7l\"
         ]
