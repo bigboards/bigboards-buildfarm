@@ -45,7 +45,7 @@ curl -X POST "https://api.buildkite.com/v2/organizations/${ORG_SLUG}/pipelines?a
     \"steps\": [
       {
         \"type\": \"script\",
-        \"name\": \"Build x86_64 :container:\",
+        \"name\": \"Build x86_64 :docker:\",
         \"command\": \"${BUILD_SCRIPT} ${CONTAINER_ID} \${BUILDKITE_BRANCH}\",
 	\"agent_query_rules\": [
            \"arch=x86_64\"
@@ -53,7 +53,7 @@ curl -X POST "https://api.buildkite.com/v2/organizations/${ORG_SLUG}/pipelines?a
       },
       {
         \"type\": \"script\",
-        \"name\": \"Build armv7l :container:\",
+        \"name\": \"Build armv7l :docker:\",
         \"command\": \"${BUILD_SCRIPT} ${CONTAINER_ID} \${BUILDKITE_BRANCH}\",
 	\"agent_query_rules\": [
            \"arch=armv7l\"
