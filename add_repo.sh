@@ -6,7 +6,7 @@ BUILDKITE="7eaec9eae9c59c4a5f07166a0ddd75eb8ea1d785"
 GITHUB_USER="bbbaldrick"
 GITHUB_PWD="tpBNZWVuLQ2h"
 
-TMP_FILE="/tmp/$(uuid)"
+[[ $(uname) = "Darwin" ]] && TMP_FILE="/tmp/$(uuidgen)" || TMP_FILE="/tmp/$(uuid)"
 
 PROJECT_ID=$1
 PROJECT_NAME=$2
